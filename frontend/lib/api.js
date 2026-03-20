@@ -1,5 +1,8 @@
 // API configuration and helper functions
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+// Default to the deployed Render backend if no env var is set
+const API_BASE_URL =
+  process.env.NEXT_PUBLIC_API_URL ||
+  'https://image-compression-1-3f25.onrender.com'
 
 export const getApiUrl = (endpoint) => {
   return `${API_BASE_URL}${endpoint}`
