@@ -1,5 +1,9 @@
 // API configuration and helper functions
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api'
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+
+export const getApiUrl = (endpoint) => {
+  return `${API_BASE_URL}${endpoint}`
+}
 
 export const apiClient = {
   /**
@@ -11,7 +15,7 @@ export const apiClient = {
     const formData = new FormData()
     formData.append('file', file)
 
-    const response = await fetch(`${API_BASE_URL}/compression/compress`, {
+    const response = await fetch(`${API_BASE_URL}/api/compression/compress`, {
       method: 'POST',
       body: formData,
     })
@@ -29,7 +33,7 @@ export const apiClient = {
    * @returns {Promise<Object>} Compression result with metrics
    */
   async getCompressionResult(jobId) {
-    const response = await fetch(`${API_BASE_URL}/compression/result/${jobId}`)
+    const response = await fetch(`${API_BASE_URL}/api/compression/result/${jobId}`)
 
     if (!response.ok) {
       throw new Error('Failed to fetch compression result')
@@ -44,7 +48,7 @@ export const apiClient = {
    * @returns {Promise<Object>} Metrics data
    */
   async getMetrics(jobId) {
-    const response = await fetch(`${API_BASE_URL}/compression/metrics/${jobId}`)
+    const response = await fetch(`${API_BASE_URL}/api/compression/metrics/${jobId}`)
 
     if (!response.ok) {
       throw new Error('Failed to fetch metrics')
@@ -60,7 +64,7 @@ export const apiClient = {
    */
   async getHistory(limit = 10) {
     const response = await fetch(
-      `${API_BASE_URL}/compression/history?limit=${limit}`
+      `${API_BASE_URL}/api/compression/history?limit=${limit}`
     )
 
     if (!response.ok) {
@@ -75,7 +79,7 @@ export const apiClient = {
    * @returns {Promise<Object>} Analytics data
    */
   async getAnalytics() {
-    const response = await fetch(`${API_BASE_URL}/analytics/summary`)
+    const response = await fetch(`${API_BASE_URL}/api/analytics/summary`)
 
     if (!response.ok) {
       throw new Error('Failed to fetch analytics')
@@ -89,7 +93,7 @@ export const apiClient = {
    * @param {string} jobId - The compression job ID
    */
   async downloadCompressed(jobId) {
-    window.location.href = `${API_BASE_URL}/compression/download/${jobId}`
+    window.location.href = `${API_BASE_URL}/api/compression/download/${jobId}`
   },
 
   /**
@@ -97,7 +101,7 @@ export const apiClient = {
    * @param {string} jobId - The compression job ID
    */
   async downloadOriginal(jobId) {
-    window.location.href = `${API_BASE_URL}/compression/download/${jobId}?type=original`
+    window.location.href = `${API_BASE_URL}/api/compression/download/${jobId}?type=original`
   },
 }
 
