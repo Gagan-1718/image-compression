@@ -2,6 +2,7 @@
 
 import { useState, useRef } from 'react'
 import { Upload, AlertCircle, CheckCircle, Sparkles } from 'lucide-react'
+import { getApiUrl } from '@/lib/api'
 
 // Constants
 const ACCEPTED_FORMATS = ['image/jpeg', 'image/png', 'image/bmp']
@@ -56,7 +57,7 @@ export default function UploadDropZone({ onImageSelect }) {
       const formData = new FormData()
       formData.append('file', file)
       
-      const response = await fetch('http://localhost:8001/api/compression/upload', {
+      const response = await fetch(getApiUrl('/api/compression/upload'), {
         method: 'POST',
         body: formData,
       })

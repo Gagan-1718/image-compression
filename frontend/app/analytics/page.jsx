@@ -22,7 +22,7 @@ function AnalyticsContent() {
   const fetchCompressionResult = async (jobId) => {
     try {
       setLoading(true)
-      const response = await fetch(`http://localhost:8001/api/compression/job/${jobId}`)
+      const response = await fetch(getApiUrl(`/api/compression/job/${jobId}`))
       if (response.ok) {
         const data = await response.json()
         setCompressionResult(data)

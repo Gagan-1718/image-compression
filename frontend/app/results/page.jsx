@@ -24,13 +24,13 @@ function ResultsContent() {
     try {
       setLoading(true)
       // Try to fetch job status and info
-      const response = await fetch(`http://localhost:8001/api/compression/job/${jobId}`)
+      const response = await fetch(getApiUrl(`/api/compression/job/${jobId}`))
       if (response.ok) {
         const data = await response.json()
         setCompressionResult(data)
       } else if (response.status === 400) {
         // Job might not be completed yet, get partial data
-        const jobResponse = await fetch(`http://localhost:8001/api/compression/job/${jobId}`)
+        const jobResponse = await fetch(getApiUrl(`/api/compression/job/${jobId}`))
         if (jobResponse.ok) {
           const jobData = await jobResponse.json()
           setCompressionResult(jobData)

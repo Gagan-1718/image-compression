@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Loader, AlertCircle, Zap, Check, Sparkles } from 'lucide-react'
 import { LoadingOverlay, ProgressBar } from './Loading'
+import { getApiUrl } from '@/lib/api'
 import { useToast } from './Toast'
 
 export default function CompressionForm({ image }) {
@@ -35,7 +36,7 @@ export default function CompressionForm({ image }) {
 
       // Call compress endpoint with job_id and quality
       const response = await fetch(
-        `http://localhost:8001/api/compression/compress/${image.job_id}?quality=${quality}`,
+        `${getApiUrl('/api/compression/compress')}/${image.job_id}?quality=${quality}`,
         {
           method: 'POST',
         }
