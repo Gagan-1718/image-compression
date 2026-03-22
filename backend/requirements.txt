@@ -1,7 +1,9 @@
 fastapi==0.104.1
 uvicorn[standard]==0.24.0
 python-multipart==0.0.6
-pillow==10.1.0
+# Pillow 9.5.0 has prebuilt wheels compatible with the Render
+# environment and avoids the build-time KeyError you are seeing.
+pillow==9.5.0
 opencv-python-headless==4.8.1.78
 numpy==1.24.3
 pydantic==2.5.0
