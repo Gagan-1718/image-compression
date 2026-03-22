@@ -5,6 +5,7 @@ import { useState, useEffect, Suspense } from 'react'
 import Link from 'next/link'
 import AnalyticsDashboard from '@/components/AnalyticsDashboard'
 import MetricsDisplay from '@/components/MetricsDisplay'
+import { getApiUrl } from '@/lib/api'
 import { ArrowLeft, Loader } from 'lucide-react'
 
 function AnalyticsContent() {
