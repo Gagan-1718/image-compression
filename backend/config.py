@@ -26,7 +26,13 @@ class Settings(BaseSettings):
     compressed_dir: Path = Path(__file__).parent / "storage" / "compressed"
     
     # CORS settings
-    cors_origins: list = ["http://localhost:3000", "http://localhost:3001", "http://localhost:8080"]
+    # Include local dev and production frontend (Vercel)
+    cors_origins: list = [
+        "http://localhost:3000",
+        "http://localhost:3001",
+        "http://localhost:8080",
+        "https://image-compression-gagan.vercel.app",
+    ]
     
     # Database settings (PostgreSQL)
     database_url: str = "postgresql://user:password@localhost:5432/compression_lab"
