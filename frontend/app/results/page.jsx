@@ -4,6 +4,7 @@ import { useSearchParams } from 'next/navigation'
 import { useState, useEffect, Suspense } from 'react'
 import Link from 'next/link'
 import ImageComparison from '@/components/ImageComparison'
+import { getApiUrl } from '@/lib/api'
 import { Download, ArrowLeft, Loader, BarChart3 } from 'lucide-react'
 
 function ResultsContent() {
@@ -49,7 +50,7 @@ function ResultsContent() {
     setIsDownloading(true)
     try {
       const response = await fetch(
-        `http://localhost:8001/api/compression/download/${compressionResult.job_id}`
+        getApiUrl(`/api/compression/download/${compressionResult.job_id}`)
       )
 
       if (!response.ok) {
